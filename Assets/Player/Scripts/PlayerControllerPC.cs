@@ -31,6 +31,11 @@ public class PlayerControllerPC : MonoBehaviour
         {
             Shoot();
         }
+
+		if (Input.GetMouseButtonUp (0)) 
+		{
+			Shoot ();
+		}
     }
 
     void Shoot()

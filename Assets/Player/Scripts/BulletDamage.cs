@@ -6,7 +6,7 @@ public class BulletDamage : MonoBehaviour {
     public int bulletDamage;
 	// Use this for initialization
 	void Start () {
-        Destroy(gameObject, 2);
+        Destroy(gameObject, 1.5f);
 	}
 	
 	// Update is called once per frame

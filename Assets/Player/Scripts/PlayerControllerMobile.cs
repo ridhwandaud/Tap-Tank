@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class PlayerControllerMobile : MonoBehaviour
 {
@@ -8,21 +9,29 @@ public class PlayerControllerMobile : MonoBehaviour
 
     //Handling
     public Transform rotateChild;
+	public int bulletAmmo;
+	public int totalBullet;
 
     //GameObject
     public GameObject bulletPrefab;
     public GameObject bulletSpawn;
     public float bulletSpeed;
 
-
     void Start()
     {
         rotateAnimator = rotateChild.GetComponent<Animator>();
+		totalBullet = bulletAmmo;
     }
 
     void Update()
     {
-       Touch();
+       	//Touch();
+		MousePosition ();
+
+		if(bulletAmmo == 0)
+		{
+			Invoke("Reload", 1);   
+		}
     }
 
     void Touch()
@@ -40,11 +49,34 @@ public class PlayerControllerMobile : MonoBehaviour
         }
     }
 
+	void Reload()
+	{
+		bulletAmmo = totalBullet;
+	}
+
+	void MousePosition()
+	{
+		if (Input.GetMouseButton (0)) 
+		{
+			rotateChild.gameObject.SetActive(true);
+			Vector3 mousePos = Camera.main.ScreenToWorldPoint (Input.mousePosition);
+			rotateChild.rotation = Quaternion.LookRotation (Vector3.forward,transform.position - mousePos);
+		}
+		else if (Input.GetMouseButtonUp (0))  // cooldown check
+		{
+			Shoot ();
+		}
+	}
+
     void Shoot()
     {
+		bulletAmmo--;
         GameObject bullet = (GameObject)Instantiate(bulletPrefab, bulletSpawn.transform.position, Quaternion.identity);
         bullet.transform.rotation = rotateChild.rotation;// this is to follow rotating child 
-        bullet.GetComponent<Rigidbody2D>().AddRelativeForce(Vector2.up * bulletSpeed); //to add force according to rotation	
+        bullet.GetComponent<Rigidbody2D>().AddRelativeForce(Vector2.up * bulletSpeed); //to add force according to rotation
+		rotateChild.gameObject.SetActive(false);
     }
+
+
 
 }

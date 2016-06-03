@@ -1,0 +1,144 @@
+fileFormatVersion: 2
+guid: a79da70326c3b16498e0fca223aad816
+timeCreated: 1464855181
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: a_0
+    21300002: bg
+    21300004: a_2
+    21300006: belon
+    21300008: a_4
+    21300010: arrow
+    21300012: player
+    21300014: land
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: a_0
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 1662
+        width: 775
+        height: 774
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bg
+      rect:
+        serializedVersion: 2
+        x: 1148
+        y: 1040
+        width: 1134
+        height: 1799
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: a_2
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 865
+        width: 621
+        height: 620
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: belon
+      rect:
+        serializedVersion: 2
+        x: 2469
+        y: 969
+        width: 233
+        height: 244
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: a_4
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 190
+        width: 1134
+        height: 388
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: arrow
+      rect:
+        serializedVersion: 2
+        x: 1564
+        y: 426
+        width: 303
+        height: 505
+      alignment: 9
+      pivot: {x: .5, y: .300000012}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: player
+      rect:
+        serializedVersion: 2
+        x: 2044
+        y: 531
+        width: 119
+        height: 117
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: land
+      rect:
+        serializedVersion: 2
+        x: 1684
+        y: 132
+        width: 1139
+        height: 160
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
