@@ -11,6 +11,8 @@ public class PlayerControllerMobile : MonoBehaviour
     public Transform rotateChild;
 	public int bulletAmmo;
 	public int totalBullet;
+	public float time;
+	public float attackTime;
 
     //GameObject
     public GameObject bulletPrefab;
@@ -26,7 +28,14 @@ public class PlayerControllerMobile : MonoBehaviour
     void Update()
     {
        	//Touch();
-		MousePosition ();
+
+
+		time += Time.deltaTime;
+
+		if (time >= attackTime) {
+			MousePosition ();
+		}
+
 
 		if(bulletAmmo == 0)
 		{
@@ -65,6 +74,7 @@ public class PlayerControllerMobile : MonoBehaviour
 		else if (Input.GetMouseButtonUp (0))  // cooldown check
 		{
 			Shoot ();
+			time = 0;
 		}
 	}
 
