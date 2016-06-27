@@ -16,6 +16,7 @@ public class EnemyHealth : MonoBehaviour {
         {
             health = 0;
             Destroy(gameObject);
+			GameController.instance.NextLevel ();
         }
     }
 

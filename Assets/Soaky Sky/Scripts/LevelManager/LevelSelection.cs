@@ -30,6 +30,6 @@ public class LevelSelection : MonoBehaviour {
 	public void LevelSelect(int level)
 	{
 		PlayerPrefs.SetInt ("CurrentLevel",level);
-		Application.LoadLevel (2);
+		Application.LoadLevel ("Game");
 	}
 }

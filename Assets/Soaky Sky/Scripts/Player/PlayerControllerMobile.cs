@@ -18,6 +18,7 @@ public class PlayerControllerMobile : MonoBehaviour
     public GameObject bulletPrefab;
     public GameObject bulletSpawn;
     public float bulletSpeed;
+	public bool isReadyToNextShoot = true;
 
 	Vector2 direction,heading;
 
@@ -31,20 +32,13 @@ public class PlayerControllerMobile : MonoBehaviour
 
     void Update()
     {
-       	//Touch();
-
-
-		time += Time.deltaTime;
-
-		if (time >= attackTime) {
+   
+		if (GameObject.FindGameObjectWithTag ("Bullet") != null) {
+			isReadyToNextShoot = true;
+		}
+		if (isReadyToNextShoot) {
 			MousePosition ();
 		}
-
-
-//		if(bulletAmmo == 0)
-//		{
-//			Invoke("Reload", 1);   
-//		}
     }
 
 //    void Touch()
@@ -83,6 +77,7 @@ public class PlayerControllerMobile : MonoBehaviour
 		else if (Input.GetMouseButtonUp (0))  // cooldown check
 		{
 			Shoot (direction);
+			isReadyToNextShoot = false;
 			time = 0;
 		}
 	}
@@ -96,7 +91,7 @@ public class PlayerControllerMobile : MonoBehaviour
 
 		//Vector2 direction = bullet.transform.rotation*Vector2.up;
 
-		bullet.GetComponent<Ball>().setDirection(direction);
+		//bullet.GetComponent<Ball>().setDirection(direction);
 		rotateChild.gameObject.SetActive(false);
     }
 
