@@ -14,19 +14,17 @@ public class GameController : MonoBehaviour {
 	public GameObject[] levels;
 
 	//Ads
-	public int i;
+	public int playTime;
 	public int adsShow;
 	public string gameId; // Set this value from the inspector.
 	public bool enableTestMode = true;
 	public bool adsShowing = true;
+	public AppodealManager ads;
 
 	void Awake(){
 		instance = this;
 		CheckCurrentLevel ();
 		CheckPlayTime ();
-
-		print ("currentLevel" + currentLevel);
-		print ("length" + levels.Length);
 	}
 
 	void CheckCurrentLevel (){
@@ -56,6 +54,10 @@ public class GameController : MonoBehaviour {
 			Application.LoadLevel ("LevelSelection");
 		}
 
+		if (playTime > 3) {
+			ads.InterstitialAds ();
+			PlayerPrefs.SetInt("PlayTime",1);
+		}
 
 		Application.LoadLevel ("Game");
 	}
@@ -64,14 +66,12 @@ public class GameController : MonoBehaviour {
 	{
 		if (PlayerPrefs.HasKey ("PlayTime") == false) {
 			PlayerPrefs.SetInt("PlayTime",1);
-			i=1;
+					playTime=1;
 		}
 
-		i = PlayerPrefs.GetInt ("PlayTime");
-
-		i++;
-
-		PlayerPrefs.SetInt("PlayTime",i);
+		playTime = PlayerPrefs.GetInt ("PlayTime");
+		playTime++;
+		PlayerPrefs.SetInt("PlayTime",playTime);
 
 	}
 
