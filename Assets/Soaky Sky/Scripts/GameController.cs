@@ -24,6 +24,9 @@ public class GameController : MonoBehaviour {
 		instance = this;
 		CheckCurrentLevel ();
 		CheckPlayTime ();
+
+		print ("currentLevel" + currentLevel);
+		print ("length" + levels.Length);
 	}
 
 	void CheckCurrentLevel (){
@@ -34,14 +37,26 @@ public class GameController : MonoBehaviour {
 		}
 
 		currentLevel = PlayerPrefs.GetInt ("CurrentLevel");
-		Instantiate (levels [currentLevel]);
+
+		if (currentLevel < levels.Length) {
+			Instantiate (levels [currentLevel]);
+		} else {
+			Application.LoadLevel ("LevelSelection");
+		}
 	}
 
 	public void NextLevel()
 	{
 		currentLevel++;
 		PlayerPrefs.SetInt ("CurrentLevel", currentLevel);
-		PlayerPrefs.SetInt ("level"+currentLevel, 1);
+
+		if (currentLevel < levels.Length) {
+			PlayerPrefs.SetInt ("level"+currentLevel, 1);
+		} else {
+			Application.LoadLevel ("LevelSelection");
+		}
+
+
 		Application.LoadLevel ("Game");
 	}
 		

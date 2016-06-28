@@ -17,7 +17,7 @@ public class Game_ButtonFunctions : MonoBehaviour {
 	}
 
 	public void Home(){
-		Application.LoadLevel ("MenuScene"); //Load StartMenu Scene
+		Application.LoadLevel ("MainMenu"); //Load StartMenu Scene
 		//Prevent clicking home during paused
 		Time.timeScale = 1; //timeScale = 1  It's mean not paused.
 	}
