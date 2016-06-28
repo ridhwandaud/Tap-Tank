@@ -6,7 +6,7 @@ public class BulletDamage : MonoBehaviour {
     public int bulletDamage;
 	// Use this for initialization
 	void Start () {
-        //Destroy(gameObject, 2.0f);
+        Destroy(gameObject, 5.0f);
 	}
 	
 	// Update is called once per frame
@@ -22,9 +22,4 @@ public class BulletDamage : MonoBehaviour {
             Destroy(gameObject);
         }
     }
-
-	void OnCollisionEnter2D(Collision2D coll) {
-		print ("langgar");
-		
-	}
 }

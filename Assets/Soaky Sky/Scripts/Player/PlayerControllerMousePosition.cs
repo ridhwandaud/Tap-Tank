@@ -23,7 +23,7 @@ public class PlayerControllerMousePosition : MonoBehaviour
     {
         rotateAnimator = rotateChild.GetComponent<Animator>();
         totalBullet = bulletAmmo;
-        //text.text = bulletAmmo + "/" + totalBullet;
+        text.text = bulletAmmo + "/" + totalBullet;
     }
 
     void Update()
@@ -39,7 +39,7 @@ public class PlayerControllerMousePosition : MonoBehaviour
     void Reload()
     {
         bulletAmmo = totalBullet;
-        //text.text = bulletAmmo + "/" + totalBullet;
+        text.text = bulletAmmo + "/" + totalBullet;
     }
 
     void MousePosition()
@@ -61,7 +61,7 @@ public class PlayerControllerMousePosition : MonoBehaviour
     void Shoot()
     {
         bulletAmmo--;
-        //text.text = bulletAmmo + "/" + totalBullet;
+        text.text = bulletAmmo + "/" + totalBullet;
         GameObject bullet = (GameObject)Instantiate(bulletPrefab, bulletSpawn.transform.position, Quaternion.identity);
         bullet.transform.rotation = rotateChild.rotation;// this is to follow rotating child 
         bullet.GetComponent<Rigidbody2D>().AddRelativeForce(Vector2.up * bulletSpeed); //to add force according to rotation

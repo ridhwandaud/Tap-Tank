@@ -11,18 +11,11 @@ public class PlayerControllerMobile : MonoBehaviour
     public Transform rotateChild;
 	public int bulletAmmo;
 	public int totalBullet;
-	public float time;
-	public float attackTime;
 
     //GameObject
     public GameObject bulletPrefab;
     public GameObject bulletSpawn;
     public float bulletSpeed;
-	public bool isReadyToNextShoot = true;
-
-	Vector2 direction,heading;
-
-	float distance;
 
     void Start()
     {
@@ -32,29 +25,29 @@ public class PlayerControllerMobile : MonoBehaviour
 
     void Update()
     {
-   
-		if (GameObject.FindGameObjectWithTag ("Bullet") != null) {
-			isReadyToNextShoot = true;
-		}
-		if (isReadyToNextShoot) {
-			MousePosition ();
+       	//Touch();
+		MousePosition ();
+
+		if(bulletAmmo == 0)
+		{
+			Invoke("Reload", 1);   
 		}
     }
 
-//    void Touch()
-//    {
-//        for (var i = 0; i < Input.touchCount; ++i)
-//        {
-//            Touch touch = Input.GetTouch(i);
-//            int pointerID = touch.fingerId;
-//
-//            if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled) //Release
-//            {
-//                Shoot(1);
-//            }
-//
-//        }
-//    }
+    void Touch()
+    {
+        for (var i = 0; i < Input.touchCount; ++i)
+        {
+            Touch touch = Input.GetTouch(i);
+            int pointerID = touch.fingerId;
+
+            if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled) //Release
+            {
+                Shoot();
+            }
+
+        }
+    }
 
 	void Reload()
 	{
@@ -68,31 +61,28 @@ public class PlayerControllerMobile : MonoBehaviour
 			rotateChild.gameObject.SetActive(true);
 			Vector3 mousePos = Camera.main.ScreenToWorldPoint (Input.mousePosition);
 			rotateChild.rotation = Quaternion.LookRotation (Vector3.forward,transform.position - mousePos);
-
-			heading = transform.position - mousePos;
-			distance = heading.magnitude;
-			direction = heading / distance;
-
 		}
 		else if (Input.GetMouseButtonUp (0))  // cooldown check
 		{
-			Shoot (direction);
-			isReadyToNextShoot = false;
-			time = 0;
+			Shoot ();
 		}
 	}
 
-	void Shoot(Vector2 direction)
+    void Shoot()
     {
 		bulletAmmo--;
         GameObject bullet = (GameObject)Instantiate(bulletPrefab, bulletSpawn.transform.position, Quaternion.identity);
         bullet.transform.rotation = rotateChild.rotation;// this is to follow rotating child 
-		bullet.GetComponent<Rigidbody2D>().AddForce(direction * bulletSpeed); //to add force according to rotation
-
-		//Vector2 direction = bullet.transform.rotation*Vector2.up;
-
-		//bullet.GetComponent<Ball>().setDirection(direction);
-		rotateChild.gameObject.SetActive(false);
+        bullet.GetComponent<Rigidbody2D>().AddRelativeForce(Vector2.up * bulletSpeed); //to add force according to rotation
+        //Vector2 bulletVector = bullet.transform.rotation * Vector2.up;
+        //Debug.Log("bulletVector "+bulletVector);
+        
+        //bullet.GetComponent<ricochet>().setDirection(bulletVector);
+        //Debug.Log("bullet rotation to vector from player"+bulletVector);
+        //Debug.Log("bullet position "+bullet.transform.position);
+        
+        
+        rotateChild.gameObject.SetActive(false);
     }
 
 
