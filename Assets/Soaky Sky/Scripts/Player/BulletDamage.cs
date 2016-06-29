@@ -21,5 +21,12 @@ public class BulletDamage : MonoBehaviour {
             other.gameObject.GetComponent<EnemyHealth>().TakeDamage(bulletDamage);
             Destroy(gameObject);
         }
+       
+    }
+
+    void OnCollisionEnter2D(Collision2D other){
+        if(other.gameObject.tag =="Thorn"){
+            Destroy(gameObject);
+        }
     }
 }
