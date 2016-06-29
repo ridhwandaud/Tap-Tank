@@ -20,6 +20,7 @@ public class EnemyHealth : MonoBehaviour {
             GameController.instance.NextLevel();
             //Scene scene = SceneManager.GetActiveScene();
             //SceneManager.LoadScene(scene.buildIndex + 1);
+
         }
     }
 

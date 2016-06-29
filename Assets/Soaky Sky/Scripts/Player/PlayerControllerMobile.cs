@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class PlayerControllerMobile : MonoBehaviour
 {
@@ -17,71 +18,50 @@ public class PlayerControllerMobile : MonoBehaviour
     public GameObject bulletSpawn;
     public float bulletSpeed;
 
+	private int pointerID = -1;
+
     void Start()
     {
+		if (Application.isMobilePlatform) {
+			pointerID = 0; //for mobile and unity
+		}
         rotateAnimator = rotateChild.GetComponent<Animator>();
 		totalBullet = bulletAmmo;
     }
 
     void Update()
     {
-       	//Touch();
 		MousePosition ();
-
-		if(bulletAmmo == 0)
-		{
-			Invoke("Reload", 1);   
-		}
     }
-
-    void Touch()
-    {
-        for (var i = 0; i < Input.touchCount; ++i)
-        {
-            Touch touch = Input.GetTouch(i);
-            int pointerID = touch.fingerId;
-
-            if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled) //Release
-            {
-                Shoot();
-            }
-
-        }
-    }
-
-	void Reload()
-	{
-		bulletAmmo = totalBullet;
-	}
+		
 
 	void MousePosition()
 	{
-		if (Input.GetMouseButton (0)) 
+		if (Input.GetMouseButton (0) && Time.timeScale != 0) 
 		{
+			//For Block click through UI 
+			if(EventSystem.current.IsPointerOverGameObject(pointerID)){
+				return; //Not Shoot
+			}
 			rotateChild.gameObject.SetActive(true);
 			Vector3 mousePos = Camera.main.ScreenToWorldPoint (Input.mousePosition);
 			rotateChild.rotation = Quaternion.LookRotation (Vector3.forward,transform.position - mousePos);
 		}
 		else if (Input.GetMouseButtonUp (0))  // cooldown check
 		{
+			//For Block click through UI 
+			if(EventSystem.current.IsPointerOverGameObject(pointerID)){
+				return; //Not Shoot
+			}
 			Shoot ();
 		}
 	}
 
     void Shoot()
     {
-		bulletAmmo--;
         GameObject bullet = (GameObject)Instantiate(bulletPrefab, bulletSpawn.transform.position, Quaternion.identity);
         bullet.transform.rotation = rotateChild.rotation;// this is to follow rotating child 
         bullet.GetComponent<Rigidbody2D>().AddRelativeForce(Vector2.up * bulletSpeed); //to add force according to rotation
-        //Vector2 bulletVector = bullet.transform.rotation * Vector2.up;
-        //Debug.Log("bulletVector "+bulletVector);
-        
-        //bullet.GetComponent<ricochet>().setDirection(bulletVector);
-        //Debug.Log("bullet rotation to vector from player"+bulletVector);
-        //Debug.Log("bullet position "+bullet.transform.position);
-        
-        
         rotateChild.gameObject.SetActive(false);
     }
 

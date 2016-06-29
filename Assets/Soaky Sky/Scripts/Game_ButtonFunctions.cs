@@ -3,9 +3,11 @@ using System.Collections;
 
 public class Game_ButtonFunctions : MonoBehaviour {
 
+	public AppodealManager ads;
+
 	public void Rate(){
 		//Put your URL
-		Application.OpenURL ("https://play.google.com/store/apps/details?id=com.ridhwan.bouncingrabbit"); 
+		Application.OpenURL ("https://play.google.com/store/apps/details?id=com.catgeargames.soakysky"); 
 	}
 
 	public void Pause(){
@@ -17,8 +19,9 @@ public class Game_ButtonFunctions : MonoBehaviour {
 	}
 
 	public void Home(){
-		Application.LoadLevel ("MenuScene"); //Load StartMenu Scene
+		Application.LoadLevel ("MainMenu"); //Load StartMenu Scene
 		//Prevent clicking home during paused
+		ads.InterstitialAds();
 		Time.timeScale = 1; //timeScale = 1  It's mean not paused.
 	}
 

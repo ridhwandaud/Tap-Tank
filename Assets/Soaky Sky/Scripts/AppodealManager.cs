@@ -19,21 +19,23 @@ public class AppodealManager : MonoBehaviour {
 
 	void Awake () 
 	{
-		//Check if there is already an instance of SoundManager
-		if (instance == null) {
-			//if not, set it to this.
-			instance = this;
-			Appodeal.initialize (appKey, Appodeal.INTERSTITIAL | Appodeal.BANNER);
-			BannerAds ();
-		}
-		//If instance already exists:
-		else if (instance != this) {
-			//Destroy this, this enforces our singleton pattern so there can only be one instance of SoundManager.
-			Destroy (gameObject);
-		}
-
-		//Set AppodealManager to DontDestroyOnLoad so that it won't be destroyed when reloading our scene.
-		DontDestroyOnLoad (gameObject);
+		Appodeal.initialize (appKey, Appodeal.INTERSTITIAL | Appodeal.BANNER);
+		BannerAds ();
+//		//Check if there is already an instance of SoundManager
+//		if (instance == null) {
+//			//if not, set it to this.
+//			instance = this;
+//			Appodeal.initialize (appKey, Appodeal.INTERSTITIAL | Appodeal.BANNER);
+//			BannerAds ();
+//		}
+//		//If instance already exists:
+//		else if (instance != this) {
+//			//Destroy this, this enforces our singleton pattern so there can only be one instance of SoundManager.
+//			Destroy (gameObject);
+//		}
+//
+//		//Set AppodealManager to DontDestroyOnLoad so that it won't be destroyed when reloading our scene.
+//		DontDestroyOnLoad (gameObject);
 		
 	}
 
