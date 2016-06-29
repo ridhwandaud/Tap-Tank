@@ -26,3 +26,5 @@ ExportedObj/
 sysinfo.txt
 
 *.keystore
+
+/.vscode
