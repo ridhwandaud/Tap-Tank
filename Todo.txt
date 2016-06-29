@@ -1,0 +1,23 @@
+// Bullet
+
+1)Water
+
+2)Trail
+
+//Player 
+
+1)Idle
+
+2)Aim
+
+3)Lunch Water
+
+//Awan
+
+1)Idle
+
+2)Absorb Water
+
+3)Raining
+
+//
