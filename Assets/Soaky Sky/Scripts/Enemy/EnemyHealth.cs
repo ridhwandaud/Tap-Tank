@@ -17,7 +17,10 @@ public class EnemyHealth : MonoBehaviour {
         {
             health = 0;
             Destroy(gameObject);
-			GameController.instance.NextLevel();
+            GameController.instance.NextLevel();
+            //Scene scene = SceneManager.GetActiveScene();
+            //SceneManager.LoadScene(scene.buildIndex + 1);
+
         }
     }
 
