@@ -1,8 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class StartMenu_ButtonFunctions : MonoBehaviour {
 
+	public Slider startButton;
+
+	void Start(){
+		startButton.onValueChanged.AddListener(delegate{ValueChangeCheck();});
+	}
+
+	void ValueChangeCheck(){
+		if(startButton.value == 1){
+			Play();
+		}
+	}
 	// Update is called once per frame
 	void Update () {
 		//If touch back on mobile
@@ -17,6 +30,8 @@ public class StartMenu_ButtonFunctions : MonoBehaviour {
 	}
 
 	public void Play(){
-		Application.LoadLevel ("LevelSelection"); //Load Game Scene
+		SceneManager.LoadScene ("LevelSelection"); //Load Game Scene
 	}
+
+	
 }
