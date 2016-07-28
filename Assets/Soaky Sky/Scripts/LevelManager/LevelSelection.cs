@@ -87,6 +87,7 @@ public class LevelSelection : MonoBehaviour {
 	{
 		//first level always open (1)
 		GameObject.Find("lock1").SetActive(false); 
+		
 		//Debug.Log("Levels "+LockLevel.levels);
 		//loop through the levels of a particular world
 		for(int j = 0; j < LockLevel.levels; j++)
@@ -100,7 +101,7 @@ public class LevelSelection : MonoBehaviour {
 			{
 				//Debug.Log("j+1 "+(j+1));
 				//GameObject.Find("LockedLevel"+(j+1)).active = false;
-				GameObject.Find("lock"+(j+1)).SetActive(false);   //line ni problem
+				GameObject.Find("lock"+(j+1)).SetActive(false);   
 				//numberLvl[j].SetActive(true);
 				//Debug.Log ("Unlocked level "+(j+1));
 				
@@ -108,11 +109,19 @@ public class LevelSelection : MonoBehaviour {
 //				Debug.Log("grand parent of lock interactable is "+GameObject.Find("lock"+(j+1)).GetComponentInParent<GameObject>().GetComponentInParent<Button>().interactable);
 			}else{
 				//dont check first level (solution for (1))
-				if(j!=0)
+				if(j!=0){
+								
 					GameObject.Find("lock"+(j+1)).transform.parent.parent.GetChild(0).gameObject.SetActive(false);
+					//Debug.Log("Object name "+GameObject.Find("lock"+(j+1)).transform.parent.parent.gameObject.name);
+					GameObject.Find("Level"+(j+1)).GetComponent<Button>().interactable = false;
+					ColorBlock cb = GameObject.Find("Level"+(j+1)).GetComponent<Button>().colors;
+					cb.colorMultiplier = 5;
+					GameObject.Find("Level"+(j+1)).GetComponent<Button>().colors = cb; 
+				}
 			}
 		}
-		curLVL = PlayerPrefs.GetInt("CurrentLevel");
+		curLVL = PlayerPrefs.GetInt("level");
+		//curLVL = PlayerPrefs.GetInt("CurrentLevel");
 		//Debug.Log("LVL SKANG "+curLVL);
 	}
 
