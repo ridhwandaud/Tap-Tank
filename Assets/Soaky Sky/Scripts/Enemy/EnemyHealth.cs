@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEngine.SceneManagement;
+//using UnityEngine.SceneManagement;
 
 public class EnemyHealth : MonoBehaviour {
 
@@ -16,8 +16,9 @@ public class EnemyHealth : MonoBehaviour {
         if(health <= 0)
         {
             health = 0;
-            Destroy(gameObject);
-            GameController.instance.NextLevel();
+           // Destroy(gameObject);
+            
+            StartCoroutine(GameController.instance.LevelBreak());
             //Scene scene = SceneManager.GetActiveScene();
             //SceneManager.LoadScene(scene.buildIndex + 1);
 
@@ -28,4 +29,6 @@ public class EnemyHealth : MonoBehaviour {
     {
         health -= damage;
     }
+
+    
 }

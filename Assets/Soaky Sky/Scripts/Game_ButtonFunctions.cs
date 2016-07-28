@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class Game_ButtonFunctions : MonoBehaviour {
 
@@ -19,14 +20,16 @@ public class Game_ButtonFunctions : MonoBehaviour {
 	}
 
 	public void Home(){
-		Application.LoadLevel ("MainMenu"); //Load StartMenu Scene
+		SceneManager.LoadScene("MainMenu");//Load StartMenu Scene
+		//Application.LoadLevel ("MainMenu"); //Load StartMenu Scene
 		//Prevent clicking home during paused
 		ads.InterstitialAds();
 		Time.timeScale = 1; //timeScale = 1  It's mean not paused.
 	}
 
 	public void Restart(){
-		Application.LoadLevel (Application.loadedLevel); //Reload Scene
+		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); //reload scene
+		//Application.LoadLevel (Application.loadedLevel); //Reload Scene
 		//Prevent clicking home during paused
 		Time.timeScale = 1; //timeScale = 1  It's mean not paused.
 

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class LockLevel : MonoBehaviour {
 
@@ -7,8 +8,9 @@ public class LockLevel : MonoBehaviour {
 	
 	private int worldIndex;   
 	private int levelIndex;   
-	public bool reset;
-	
+	public static bool reset;
+	public Toggle toggleBtn;
+
 	void  Start ()
 	{
 		if (reset) 
@@ -16,7 +18,19 @@ public class LockLevel : MonoBehaviour {
 			PlayerPrefs.DeleteAll (); //erase data on start
 			LockLevels ();   //call function LockLevels
 		}
+
+		
 	}
+
+	public void resetButton(){
+		reset = toggleBtn.isOn ;//Debug.Log("reset "+reset);
+		if (toggleBtn.isOn) 
+		{
+			PlayerPrefs.DeleteAll (); //erase data on start
+			LockLevels ();   //call function LockLevels
+		}
+	}
+
 	
 	//function to lock the levels
 	void  LockLevels ()

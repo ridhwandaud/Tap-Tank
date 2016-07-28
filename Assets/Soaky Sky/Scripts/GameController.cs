@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour {
 
@@ -8,6 +9,8 @@ public class GameController : MonoBehaviour {
 	public Canvas gameoverGUI; //For show GUI of gameover
 	public Canvas ingameGUI;  //For show GUI when play (pause button ,scoreText)
 	public Canvas pauseGUI; //For show GUI when pause
+
+	public Canvas lvlBrk; // for short break between level
 	public static GameController instance; //Instance
 
 	public int currentLevel;
@@ -39,7 +42,8 @@ public class GameController : MonoBehaviour {
 		if (currentLevel < levels.Length) {
 			Instantiate (levels [currentLevel]);
 		} else {
-			Application.LoadLevel ("LevelSelection");
+			SceneManager.LoadScene("LevelSelection");
+			//Application.LoadLevel ("LevelSelection");
 		}
 	}
 
@@ -51,7 +55,8 @@ public class GameController : MonoBehaviour {
 		if (currentLevel < levels.Length) {
 			PlayerPrefs.SetInt ("level"+currentLevel, 1);
 		} else {
-			Application.LoadLevel ("LevelSelection");
+			SceneManager.LoadScene("LevelSelection");
+			//Application.LoadLevel ("LevelSelection");
 		}
 
 		if (playTime > 3) {
@@ -59,7 +64,8 @@ public class GameController : MonoBehaviour {
 			PlayerPrefs.SetInt("PlayTime",1);
 		}
 
-		Application.LoadLevel ("Game");
+		SceneManager.LoadScene("Game");
+		//Application.LoadLevel ("Game");
 	}
 		
 	void CheckPlayTime()
@@ -84,4 +90,13 @@ public class GameController : MonoBehaviour {
 		Time.timeScale = 1; //Change timeScale to 1
 		pauseGUI.gameObject.SetActive (false); //Hide pauseGUI
 	}
+
+	public IEnumerator LevelBreak(){
+        lvlBrk.gameObject.SetActive(true);
+        Debug.Log("Show level break");
+        yield return new WaitForSeconds(1.5f);
+        lvlBrk.gameObject.SetActive(false);
+        Debug.Log("Hide level break");
+        NextLevel();
+    }
 }

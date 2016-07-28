@@ -20,6 +20,9 @@ public class PlayerControllerMobile : MonoBehaviour
 
 	private int pointerID = -1;
 
+	public float shootingRate = 3.5f; //
+	private float shootCooldown; //
+
     void Start()
     {
 		if (Application.isMobilePlatform) {
@@ -27,11 +30,20 @@ public class PlayerControllerMobile : MonoBehaviour
 		}
         rotateAnimator = rotateChild.GetComponent<Animator>();
 		totalBullet = bulletAmmo;
+
+		shootCooldown = 0; //
     }
 
     void Update()
     {
 		MousePosition ();
+		//Debug.Log("shootCooldown "+shootCooldown);
+		if (shootCooldown > 0)  //
+		{ //
+			shootCooldown -= Time.deltaTime; //
+			//Debug.Log("shootCooldown "+shootCooldown);
+		} //
+
     }
 		
 
@@ -59,12 +71,23 @@ public class PlayerControllerMobile : MonoBehaviour
 
     void Shoot()
     {
-        GameObject bullet = (GameObject)Instantiate(bulletPrefab, bulletSpawn.transform.position, Quaternion.identity);
-        bullet.transform.rotation = rotateChild.rotation;// this is to follow rotating child 
-        bullet.GetComponent<Rigidbody2D>().AddRelativeForce(Vector2.up * bulletSpeed); //to add force according to rotation
-        rotateChild.gameObject.SetActive(false);
+		if(CanAttack){  //
+			shootCooldown = shootingRate;
+			Debug.Log("CanAttack true");
+			GameObject bullet = (GameObject)Instantiate(bulletPrefab, bulletSpawn.transform.position, Quaternion.identity);
+			bullet.transform.rotation = rotateChild.rotation;// this is to follow rotating child 
+			bullet.GetComponent<Rigidbody2D>().AddRelativeForce(Vector2.up * bulletSpeed); //to add force according to rotation
+			rotateChild.gameObject.SetActive(false);
+		}  //
+        
     }
 
-
+	public bool CanAttack   //
+	{   //
+		get  //
+		{  //
+		return shootCooldown <= 0f;   //
+		}  //
+	}  //
 
 }
