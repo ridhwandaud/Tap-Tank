@@ -12,7 +12,7 @@ public class StartMenu_ButtonFunctions : MonoBehaviour {
 	}
 
 	void ValueChangeCheck(){
-		if(startButton.value == 1){
+		if(startButton.value == 100){
 			Play();
 		}
 	}
